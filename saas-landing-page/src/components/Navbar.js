@@ -7,10 +7,12 @@ import { buttonVariants } from "./ui/button";
 import { cn } from "@/lib/utils";
 import { useState } from "react";
 import SignInForm from "./SignInForm";
+import { useLogin } from "@/context/UserContext";
 
 function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const {login} = useLogin()
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
@@ -88,7 +90,8 @@ function Navbar() {
             {/* Sign in button */}
             <div className="hidden md:flex items-center space-x-1.5">
               <button
-                onClick={() => setIsOpen(true)}
+                // onClick={() => setIsOpen(true)}
+                onClick={login}
                 className={cn(
                   buttonVariants({ variant: "default", size: "sm" }),
                   "flex items-center justify-center group px-5 bg-blue-600 hover:bg-blue-500 text-white transition-all rounded-full"
